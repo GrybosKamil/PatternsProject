@@ -28,3 +28,9 @@ node_modules/
 node/
 build/
 dist/
+
+*package-lock.json
+
+### Yarn
+*yarn.lock
+*yarn-error.log

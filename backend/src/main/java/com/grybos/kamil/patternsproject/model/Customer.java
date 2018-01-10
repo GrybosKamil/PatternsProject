@@ -1,4 +1,4 @@
-package com.grybos.kamil.patternsproject.resources;
+package com.grybos.kamil.patternsproject.model;
 
 public class Customer {
    private long id;

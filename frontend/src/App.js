@@ -1,8 +1,33 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+import EmployeeTable from "./EmployeeTable";
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            employees: []
+        }
+    }
+
+    loadEmployeesFromServer() {
+        let self = this;
+        axios.get("http://localhost:8080/api/employees")
+            .then(response => {
+                console.log(response.data);
+                self.setState({employees: response.data._embedded.employees});
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    componentDidMount() {
+        this.loadEmployeesFromServer();
+    }
+
     render() {
         return (
             <div className="App">
@@ -12,9 +37,10 @@ class App extends Component {
                 </div>
                 <p className="App-intro">
                     Hello World!
-                    Whats your name, buddy?
+                    Dude, what's your name?
                     Because, mine is Kamil
                 </p>
+                <EmployeeTable employees={this.state.employees}/>
             </div>
         );
     }

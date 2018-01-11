@@ -1,12 +1,10 @@
 package com.grybos.kamil.patternsproject.resources;
 
-import com.grybos.kamil.patternsproject.model.Employee;
+import com.grybos.kamil.patternsproject.model.Customer;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.security.access.prepost.PreAuthorize;
 
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 //    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 //    @Override

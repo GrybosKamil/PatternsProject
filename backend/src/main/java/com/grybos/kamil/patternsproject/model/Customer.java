@@ -1,45 +1,35 @@
 package com.grybos.kamil.patternsproject.model;
 
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Data
+@Entity
 public class Customer {
-   private long id;
-   private String firstName, lastName;
 
-   public long getId() {
-       return id;
-   }
+    private @Id
+    @GeneratedValue
+    Long id;
+    private String firstName;
+    private String lastName;
 
-   public void setId(long id) {
-       this.id = id;
-   }
+    public Customer() {
 
-   public String getFirstName() {
-       return firstName;
-   }
+    }
 
-   public void setFirstName(String firstName) {
-       this.firstName = firstName;
-   }
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-   public String getLastName() {
-       return lastName;
-   }
+    @Override
+    public String toString() {
+        return String.format(
+                "Customer[id=%d, firstName='%s', lastName='%s']",
+                id, firstName, lastName);
+    }
 
-   public void setLastName(String lastName) {
-       this.lastName = lastName;
-   }
-
-   public Customer(long id, String firstName, String lastName) {
-       this.id = id;
-       this.firstName = firstName;
-       this.lastName = lastName;
-   }
-
-   @Override
-   public String toString() {
-       return String.format(
-               "Customer[id=%d, firstName='%s', lastName='%s']",
-               id, firstName, lastName);
-   }
-
-   // getters & setters omitted for brevity
 }

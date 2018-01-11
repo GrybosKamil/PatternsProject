@@ -13,7 +13,19 @@ class Employee extends Component {
             });
     }
 
+    triggerDownloadCustomers() {
+        axios.get("http://localhost:8080/api/customers")
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+
     render() {
+        if (!this.props.employee) return null;
         return (
             <tr>
                 <td>{this.props.employee.name}</td>
@@ -21,6 +33,9 @@ class Employee extends Component {
                 <td>{this.props.employee.years}</td>
                 <td>
                     <button onClick={() => this.triggerDelete(this.props.employee)}>DELETE</button>
+                </td>
+                <td>
+                    <button onClick={() => this.triggerDownloadCustomers()}>GET customers</button>
                 </td>
             </tr>
         );

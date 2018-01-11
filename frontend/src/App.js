@@ -16,7 +16,6 @@ class App extends Component {
         let self = this;
         axios.get("http://localhost:8080/api/employees")
             .then(response => {
-                console.log(response.data);
                 self.setState({employees: response.data._embedded.employees});
             })
             .catch(error => {

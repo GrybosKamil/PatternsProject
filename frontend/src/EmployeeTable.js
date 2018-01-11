@@ -22,7 +22,7 @@ class EmployeeTable extends Component {
         )
     }
 }
-Employee.propTypes = {
+EmployeeTable.propTypes = {
     employees: PropTypes.array.isRequired
 };
 

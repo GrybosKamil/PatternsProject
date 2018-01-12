@@ -1,5 +1,5 @@
 {
-  "name": "PatternProject frontend",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,7 +14,8 @@
     "reselect": "^3.0.1",
     "recompose": "^0.26.0",
     "prop-types": "^15.6.0",
-    "axios": "^0.17.1"
+    "axios": "^0.17.1",
+    "bootstrap": "^3.3.7"
   },
   "devDependencies": {
     "react-scripts": "1.0.17"

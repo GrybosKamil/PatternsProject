@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import * as ApplicationActions from './actions'
-import {Application} from "./index"
+import * as LoginActions from './actions'
+import {Login} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
 
-class ApplicationContainer extends React.Component {
+class LoginContainer extends React.Component {
 
     static propTypes = {
-        application: PropTypes.object.isRequired,
+        login: PropTypes.object.isRequired,
         getEmployees: PropTypes.func.isRequired
     };
 
@@ -20,22 +20,23 @@ class ApplicationContainer extends React.Component {
 
     render() {
         return (
-            <Application employees={this.props.application.employees}/>
+            <Login message={this.props.login.message}
+                   error={this.props.login.error}/>
         )
     }
 }
 
 function mapStateToProps(state) {
     return createStructuredSelector({
-        application: createSelector(state => state.application, application => application)
+        login: createSelector(state => state.login, login => login)
     })
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ApplicationActions, dispatch);
+    return bindActionCreators(LoginActions, dispatch);
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(ApplicationContainer)
+)(LoginContainer)

@@ -16,6 +16,9 @@ function Application({employees}) {
                 <img src={logo} className="App-logo" alt="logo"/>
                 <h2>Welcome to Spring Boot React Starter!</h2>
             </div>
+            <a href={"/login"}>
+                <div className={"btn btn-lg btn-primary btn-block"}>Login</div>
+            </a>
             <p className="App-intro">
                 Hello World!
                 Dude, what's your name?

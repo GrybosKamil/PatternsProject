@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import * as ApplicationActions from './actions'
-import {Application} from "./index"
+import * as RegistrationActions from './actions'
+import {Registration} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
 
-class ApplicationContainer extends React.Component {
+class RegistrationContainer extends React.Component {
 
     static propTypes = {
-        application: PropTypes.object.isRequired,
+        registration: PropTypes.object.isRequired,
         getEmployees: PropTypes.func.isRequired
     };
 
@@ -20,22 +20,23 @@ class ApplicationContainer extends React.Component {
 
     render() {
         return (
-            <Application employees={this.props.application.employees}/>
+            <Registration message={this.props.registration.message}
+                          error={this.props.registration.error}/>
         )
     }
 }
 
 function mapStateToProps(state) {
     return createStructuredSelector({
-        application: createSelector(state => state.application, application => application)
+        registration: createSelector(state => state.registration, registration => registration)
     })
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ApplicationActions, dispatch);
+    return bindActionCreators(RegistrationActions, dispatch);
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(ApplicationContainer)
+)(RegistrationContainer)

@@ -25,7 +25,7 @@ function Login({message, error}) {
                                 type="submit">Log In
                         </button>
                         <h4 className="text-center">
-                            <a href="/register">Create an account</a>
+                            <a href={"/registration"}>Create an account</a>
                         </h4>
                     </div>
                 </div>

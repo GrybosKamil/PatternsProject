@@ -1,7 +1,7 @@
 import React from 'react';
 import pure from 'recompose/pure'
 
-function Restration({message, error, status}) {
+function Registration({message, error, status}) {
     return (
         <div className="registration-panel">
 
@@ -26,10 +26,13 @@ function Restration({message, error, status}) {
                 </div>
 
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                <h4 className="text-center">
+                    <a href={"/login"}>Login</a>
+                </h4>
             </form>
 
         </div>
     )
 }
 
-export default pure(Restration)
+export default pure(Registration)

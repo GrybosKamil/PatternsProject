@@ -1,4 +1,5 @@
 import * as registrationActionTypes from './actionTypes'
+import * as loginActionTypes from '../login/actionTypes'
 import axios from "axios/index";
 import {checkStatus, extractData} from "../../utils/apiUtils";
 
@@ -33,9 +34,13 @@ export function register() {
             .then(extractData)
             .then(data => {
                 console.log(data);
+                // dispatch({
+                //     type: registrationActionTypes.REGISTER,
+                //     employees: data.employees
+                // });
                 dispatch({
-                    type: registrationActionTypes.REGISTER,
-                    employees: data.employees
+                    type: loginActionTypes.LOGIN,
+                    user: data.user
                 });
                 return data.employees;
             })

@@ -1,7 +1,9 @@
-package com.grybos.kamil.patternsproject.resources;
+package com.grybos.kamil.patternsproject.database;
 
 import com.grybos.kamil.patternsproject.model.Customer;
 import com.grybos.kamil.patternsproject.model.Employee;
+import com.grybos.kamil.patternsproject.repository.CustomerRepository;
+import com.grybos.kamil.patternsproject.repository.EmployeeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

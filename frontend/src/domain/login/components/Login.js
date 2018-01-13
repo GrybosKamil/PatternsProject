@@ -1,28 +1,34 @@
 import React from 'react';
 import pure from 'recompose/pure'
 
-function Login({message, error}) {
+function Login({error, pressEnter, changeUsername, changePassword, doLogin}) {
     return (
         <div className="login-panel">
 
-            <form method="POST" className="form-signin">
+            <div className="form-signin">
                 <h2 className="form-heading">Log in</h2>
-
-                <div className={"form-group" + error != null ? 'hasError' : ''}>
+                <div className={"form-group" + error !== null ? 'hasError' : ''}>
                     <div className="form-group ">
-                        <span>{message}</span>
                         <input name="username" type="text"
                                className="form-control"
                                placeholder="Username"
+                               onChange={changeUsername.bind(this)}
+                               onKeyPress={pressEnter.bind(this)}
                                autoFocus="true"/>
+
                         <input name="password" type="password"
                                className="form-control"
+                               onChange={changePassword.bind(this)}
+                               onKeyPress={pressEnter.bind(this)}
                                placeholder="Password"/>
-                        <span>{error}</span>
-                        {/*<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>*/}
-
+                        {error ?
+                            <div>{error}</div>
+                            :
+                            null
+                        }
                         <button className="btn btn-lg btn-primary btn-block"
-                                type="submit">Log In
+                                onClick={doLogin.bind(this)}>
+                            Log In
                         </button>
                         <h4 className="text-center">
                             <a href={"/registration"}>Create an account</a>
@@ -30,7 +36,7 @@ function Login({message, error}) {
                     </div>
                 </div>
 
-            </form>
+            </div>
 
         </div>
     )

@@ -10,9 +10,9 @@ import javax.persistence.Id;
 @Entity
 public class Customer {
 
-    private @Id
+    @Id
     @GeneratedValue
-    Long id;
+    private Long id;
     private String firstName;
     private String lastName;
 

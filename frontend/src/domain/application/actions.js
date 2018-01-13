@@ -1,12 +1,12 @@
+import {endpoints} from '../../configuration/configuration'
 import * as applicationActionTypes from './actionTypes'
-import axios from "axios/index";
-import {checkStatus, extractData} from "../../utils/apiUtils";
+import {requestGetEmbedded} from "../../utils/apiUtils";
+
+import {doLogout as logout, isAuthenticated as isauthenticated} from '../login/actions'
 
 export function getEmployees() {
     return (dispatch, getState) => {
-        return axios.get("http://localhost:8080/api/employees")
-            .then(checkStatus)
-            .then(extractData)
+        return requestGetEmbedded(endpoints.employees)
             .then(data => {
                 console.log(data);
                 dispatch({
@@ -24,4 +24,12 @@ export function getEmployees() {
                 return error;
             });
     }
+}
+
+export function doLogout() {
+    return logout();
+}
+
+export function isAuthenticated() {
+    return isauthenticated();
 }

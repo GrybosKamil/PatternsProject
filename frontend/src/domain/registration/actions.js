@@ -9,7 +9,6 @@ export function getEmployees() {
             .then(checkStatus)
             .then(extractData)
             .then(data => {
-                console.log(data);
                 dispatch({
                     type: registrationActionTypes.CHANGE,
                     employees: data.employees
@@ -17,7 +16,6 @@ export function getEmployees() {
                 return data.employees;
             })
             .catch(error => {
-                console.log(error);
                 dispatch({
                     type: registrationActionTypes.CHANGE,
                     employees: []
@@ -33,19 +31,13 @@ export function register() {
             .then(checkStatus)
             .then(extractData)
             .then(data => {
-                console.log(data);
-                // dispatch({
-                //     type: registrationActionTypes.REGISTER,
-                //     employees: data.employees
-                // });
                 dispatch({
-                    type: loginActionTypes.LOGIN,
+                    type: loginActionTypes.LOGIN_SUCCESS,
                     user: data.user
                 });
                 return data.employees;
             })
             .catch(error => {
-                console.log(error);
                 dispatch({
                     type: registrationActionTypes.REGISTER,
                     employees: []

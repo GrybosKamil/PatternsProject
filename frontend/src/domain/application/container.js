@@ -6,28 +6,54 @@ import {connect} from 'react-redux'
 import * as ApplicationActions from './actions'
 import {Application} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
+import {isLogged, pushHistory} from "../../utils/utils";
 
 class ApplicationContainer extends React.Component {
 
     static propTypes = {
         application: PropTypes.object.isRequired,
+        login: PropTypes.object.isRequired,
         getEmployees: PropTypes.func.isRequired
     };
 
+    doLogin() {
+        pushHistory("/login");
+    }
+
+    doLogout() {
+        this.props.doLogout();
+    }
+
     componentDidMount() {
-        this.props.getEmployees();
+        if (isLogged() &&
+            this.props.isAuthenticated()
+                .then(() => true)
+                .catch(() => false)
+        ) {
+            console.log("logged, get employees!");
+            this.props.getEmployees();
+        } else {
+            console.log("not logged, redirect!");
+            pushHistory("/login");
+        }
     }
 
     render() {
         return (
-            <Application employees={this.props.application.employees}/>
+            <Application
+                logged={isLogged()}
+                employees={this.props.application.employees}
+                doLogout={this.doLogout.bind(this)}
+                doLogin={this.doLogin.bind(this)}
+            />
         )
     }
 }
 
 function mapStateToProps(state) {
     return createStructuredSelector({
-        application: createSelector(state => state.application, application => application)
+        application: createSelector(state => state.application, application => application),
+        login: createSelector(state => state.login, login => login)
     })
 }
 

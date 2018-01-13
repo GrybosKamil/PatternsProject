@@ -1,12 +1,14 @@
 import React from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {Router, Switch, Route} from 'react-router-dom'
 import {ApplicationContainer} from '../domain/application'
 import {LoginContainer} from '../domain/login'
 import {RegistrationContainer} from "../domain/registration";
 
+import history from '../configuration/customHistory'
+
 function Routes() {
     return (
-        <Router>
+        <Router history={history}>
             <div>
                 {/*<HeaderContainer/>*/}
                 <Switch>

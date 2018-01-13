@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import {endpoints} from './configuration/configuration'
+import {requestDelete, requestGetEmbedded} from "./utils/apiUtils";
 
-class Employee extends Component {
+class Employee extends React.Component {
     triggerDelete(employee) {
-        axios.delete(employee._links.self.href)
-            .then(response => {
-                console.log(response);
+        requestDelete(employee._links.self.href)
+            .then(data => {
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
@@ -14,15 +15,14 @@ class Employee extends Component {
     }
 
     triggerDownloadCustomers() {
-        axios.get("http://localhost:8080/api/customers")
-            .then(response => {
-                console.log(response);
+        requestGetEmbedded(endpoints.customers)
+            .then(data => {
+                console.log(data);
             })
             .catch(error => {
                 console.log(error);
             });
     }
-
 
     render() {
         if (!this.props.employee) return null;

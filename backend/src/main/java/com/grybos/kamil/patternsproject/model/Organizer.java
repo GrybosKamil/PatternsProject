@@ -19,11 +19,8 @@ public class Organizer extends Member {
         super(username, name);
     }
 
-    public Organizer(String username, String name,
-                     long money
-//                     Money money
-    ) {
-        super(username, name, money);
+    public Organizer(String username, String name, Wallet wallet) {
+        super(username, name, wallet);
     }
 
     public String getDescription() {

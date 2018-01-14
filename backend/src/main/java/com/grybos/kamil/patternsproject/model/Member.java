@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Data
@@ -23,11 +22,8 @@ public class Member {
     private String username;
     @Column(nullable = false)
     private String name;
-
-    //    @ManyToOne(cascade = CascadeType.ALL)
-//    private Money money;
-    @Column
-    private long money;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Wallet wallet;
 
     public Integer getId() {
         return id;
@@ -52,42 +48,23 @@ public class Member {
     public Member() {
     }
 
-//    public void setWallet(Wallet wallet) {
-//        this.wallet = wallet;
-//    }
-//
-//    public Wallet getWallet() {
-//        return wallet;
-//    }
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
 
     public Member(String username, String name) {
         this.username = username;
         this.name = name;
     }
 
-//    public Money getMoney() {
-//        return money;
-//    }
-
-//    public void setMoney(Money money) {
-//        this.money = money;
-//    }
-
-    public Member(String username, String name,
-                  long money
-//                  Money money
-    ) {
+    public Member(String username, String name, Wallet wallet) {
         this.username = username;
         this.name = name;
-        this.money = money;
-    }
-
-    public long getMoney() {
-        return money;
-    }
-
-    public void setMoney(long money) {
-        this.money = money;
+        this.wallet = wallet;
     }
 
     @Override
@@ -97,10 +74,9 @@ public class Member {
                         "id=%d, " +
                         "username='%s', " +
                         "name='%s', " +
-                        "money=[%s]" +
-//                        "wallet=[%s]" +
+                        "wallet=[%s]" +
                         "]",
-                getId(), getUsername(), getName(), getMoney()
+                getId(), getUsername(), getName(), getWallet()
         );
     }
 

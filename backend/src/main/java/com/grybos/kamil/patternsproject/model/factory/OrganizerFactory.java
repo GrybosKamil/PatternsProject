@@ -1,7 +1,7 @@
 package com.grybos.kamil.patternsproject.model.factory;
 
-//import com.grybos.kamil.patternsproject.model.Money;
 import com.grybos.kamil.patternsproject.model.Organizer;
+import com.grybos.kamil.patternsproject.model.Wallet;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,12 +10,8 @@ public class OrganizerFactory {
     public Organizer create(String username, String name) {
         return new Organizer(username, name);
     }
-
-    public Organizer create(String username, String name,
-                            long money
-//                            Money money
-    ) {
-        return new Organizer(username, name, money);
+    public Organizer create(String username, String name, Wallet wallet) {
+        return new Organizer(username, name, wallet);
     }
 
     public Organizer createNotFoundOrganizer(String username) {

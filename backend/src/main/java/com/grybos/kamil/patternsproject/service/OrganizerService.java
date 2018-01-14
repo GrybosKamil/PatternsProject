@@ -1,8 +1,9 @@
 package com.grybos.kamil.patternsproject.service;
 
-//import com.grybos.kamil.patternsproject.model.Money;
 import com.grybos.kamil.patternsproject.model.Organizer;
+import com.grybos.kamil.patternsproject.model.Wallet;
 import com.grybos.kamil.patternsproject.model.factory.OrganizerFactory;
+import com.grybos.kamil.patternsproject.model.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.repository.OrganizerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,21 +17,20 @@ public class OrganizerService {
     OrganizerRepository organizerRepository;
     @Autowired
     OrganizerFactory organizerFactory;
+    @Autowired
+    WalletFactory walletFactory;
 
     private static final Logger logger = LoggerFactory.getLogger(OrganizerService.class);
 
     public void create(String username, String name) {
         logger.info("create");
-        Organizer m = organizerFactory.create(username, name);
+        Organizer m = organizerFactory.create(username, name, walletFactory.create());
         organizerRepository.save(m);
     }
 
-    public void create(String username, String name,
-                       long money
-//                       Money money
-    ) {
+    public void create(String username, String name, Wallet wallet) {
         logger.info("create");
-        Organizer m = organizerFactory.create(username, name, money);
+        Organizer m = organizerFactory.create(username, name, wallet);
         organizerRepository.save(m);
     }
 

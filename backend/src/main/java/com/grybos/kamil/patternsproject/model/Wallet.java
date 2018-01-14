@@ -1,44 +1,50 @@
-//package com.grybos.kamil.patternsproject.model;
-//
-//import lombok.Data;
-//
-//import javax.persistence.CascadeType;
-//import javax.persistence.ElementCollection;
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.OneToMany;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import static javax.persistence.FetchType.EAGER;
-//
-//@Data
-//@Entity
-//public class Wallet {
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Integer id;
-//    //    @OneToMany(cascade = CascadeType.ALL) //ADDED
-//    @ElementCollection
-//    private List<Money> monies;
-//
-//    public Wallet() {
-//        this.monies = new ArrayList<>();
-//    }
-//
+package com.grybos.kamil.patternsproject.model;
+
+import lombok.Data;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Data
+@Entity
+public class Wallet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    //    @OneToMany(cascade = CascadeType.ALL) //ADDED
+    @ElementCollection
+    private List<String> monies;
+
+    public List<String> getMonies() {
+        return monies;
+    }
+
+    public void setMonies(List<String> monies) {
+        this.monies = monies;
+    }
+
+    public Wallet() {
+        this.monies = new ArrayList<>();
+    }
+
 //    public Wallet(List<Money> monies) {
 //        this.monies = monies;
 //    }
-//
+    public Wallet(List<String> monies) {
+        this.monies = monies;
+    }
+
 //    public List<Money> getMonies() {
 //        return monies;
 //    }
-//
+
 //    public void setMonies(List<Money> monies) {
 //        this.monies = monies;
 //    }
@@ -74,5 +80,5 @@
 //            throw new Exception("Cannot substract money");
 //        }
 //    }
-//
-//}
+
+}

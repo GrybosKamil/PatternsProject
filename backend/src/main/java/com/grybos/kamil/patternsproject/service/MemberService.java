@@ -1,8 +1,9 @@
 package com.grybos.kamil.patternsproject.service;
 
 import com.grybos.kamil.patternsproject.model.Member;
-//import com.grybos.kamil.patternsproject.model.Money;
+import com.grybos.kamil.patternsproject.model.Wallet;
 import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
+import com.grybos.kamil.patternsproject.model.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.repository.MemberRepository;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
 import org.slf4j.Logger;
@@ -19,21 +20,20 @@ public class MemberService {
     UserRepository userRepository;
     @Autowired
     MemberFactory memberFactory;
+    @Autowired
+    WalletFactory walletFactory;
 
     private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
     public void create(String username, String name) {
         logger.info("create");
-        Member m = memberFactory.create(username, name);
+        Member m = memberFactory.create(username, name, walletFactory.create());
         memberRepository.save(m);
     }
 
-    public void create(String username, String name,
-                       long money
-//            Money money
-    ) {
+    public void create(String username, String name, Wallet wallet) {
         logger.info("create");
-        Member m = memberFactory.create(username, name, money);
+        Member m = memberFactory.create(username, name, wallet);
         memberRepository.save(m);
     }
 

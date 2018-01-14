@@ -20,65 +20,54 @@ public class Wallet {
     private Integer id;
     //    @OneToMany(cascade = CascadeType.ALL) //ADDED
     @ElementCollection
-    private List<String> monies;
-
-    public List<String> getMonies() {
-        return monies;
-    }
-
-    public void setMonies(List<String> monies) {
-        this.monies = monies;
-    }
+    private List<Money> monies;
 
     public Wallet() {
         this.monies = new ArrayList<>();
     }
 
-//    public Wallet(List<Money> monies) {
-//        this.monies = monies;
-//    }
-    public Wallet(List<String> monies) {
+    public Wallet(List<Money> monies) {
         this.monies = monies;
     }
 
-//    public List<Money> getMonies() {
-//        return monies;
-//    }
+    public List<Money> getMonies() {
+        return monies;
+    }
 
-//    public void setMonies(List<Money> monies) {
-//        this.monies = monies;
-//    }
-//
-//    void addMoney(Money money) {
-//        Optional<Money> moneyOptional = monies.stream()
-//                .filter(m -> m.getCurrency() == money.getCurrency())
-//                .findFirst();
-//
-//        if (moneyOptional.isPresent()) {
-//            Money money1 = moneyOptional.get();
-//            monies.remove(money1);
-//            monies.add(money1.add(money));
-//        } else {
-//            monies.add(money);
-//        }
-//    }
-//
-//    void substractMoney(Money money) throws Exception {
-//        Optional<Money> moneyOptional = monies.stream()
-//                .filter(m -> m.getCurrency() == money.getCurrency())
-//                .findFirst();
-//
-//        if (moneyOptional.isPresent()) {
-//            Money money1 = moneyOptional.get();
-//            if (money1.greaterThan(money) || money1.equals(money)) {
-//                monies.remove(money1);
-//                monies.add(money1.subtract(money));
-//            } else {
-//                throw new Exception("Cannot substract money");
-//            }
-//        } else {
-//            throw new Exception("Cannot substract money");
-//        }
-//    }
+    public void setMonies(List<Money> monies) {
+        this.monies = monies;
+    }
+
+    void addMoney(Money money) {
+        Optional<Money> moneyOptional = monies.stream()
+                .filter(m -> m.getCurrency() == money.getCurrency())
+                .findFirst();
+
+        if (moneyOptional.isPresent()) {
+            Money money1 = moneyOptional.get();
+            monies.remove(money1);
+            monies.add(money1.add(money));
+        } else {
+            monies.add(money);
+        }
+    }
+
+    void substractMoney(Money money) throws Exception {
+        Optional<Money> moneyOptional = monies.stream()
+                .filter(m -> m.getCurrency() == money.getCurrency())
+                .findFirst();
+
+        if (moneyOptional.isPresent()) {
+            Money money1 = moneyOptional.get();
+            if (money1.greaterThan(money) || money1.equals(money)) {
+                monies.remove(money1);
+                monies.add(money1.subtract(money));
+            } else {
+                throw new Exception("Cannot substract money");
+            }
+        } else {
+            throw new Exception("Cannot substract money");
+        }
+    }
 
 }

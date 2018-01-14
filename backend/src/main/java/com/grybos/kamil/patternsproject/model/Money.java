@@ -2,6 +2,7 @@ package com.grybos.kamil.patternsproject.model;
 
 import org.junit.Assert;
 
+import javax.persistence.Embeddable;
 import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Locale;
@@ -9,11 +10,12 @@ import java.util.Locale;
 //@Data
 //@Entity
 //@Embeddable
+@Embeddable
 public class Money {
 
     //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+//    private Integer id;
     //    @Column(nullable = false)
     private final long amount;
     //    @Column(nullable = false)

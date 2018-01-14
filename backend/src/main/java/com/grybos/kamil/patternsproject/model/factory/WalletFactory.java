@@ -14,18 +14,18 @@ public class WalletFactory {
         return new Wallet();
     }
 
-    public Wallet create(String money) {
-        return create(Arrays.asList(money));
-    }
-
-    public Wallet create(List<String> monies) {
-        return new Wallet(monies);
-    }
-//    public Wallet create(Money money) {
+//    public Wallet create(String money) {
 //        return create(Arrays.asList(money));
 //    }
 //
-//    public Wallet create(List<Money> monies) {
+//    public Wallet create(List<String> monies) {
 //        return new Wallet(monies);
 //    }
+    public Wallet create(Money money) {
+        return create(Arrays.asList(money));
+    }
+
+    public Wallet create(List<Money> monies) {
+        return new Wallet(monies);
+    }
 }

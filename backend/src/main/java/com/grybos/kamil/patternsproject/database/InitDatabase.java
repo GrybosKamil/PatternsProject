@@ -21,13 +21,15 @@ public class InitDatabase {
 
     @Autowired
     public InitDatabase(
-//            MoneyFactory moneyFactory,
-                        WalletFactory walletFactory, UserService userService) {
-//        Money moneyUK = moneyFactory.create(1000, Currency.getInstance(Locale.UK));
-//        Money moneyUS1 = moneyFactory.create(545, Currency.getInstance(Locale.US));
-//        Money moneyUS2 = moneyFactory.create(545, Currency.getInstance(Locale.US));
-        Wallet walletMember = walletFactory.create("1000");
-        Wallet walletOrganizer = walletFactory.create(Arrays.asList("3213", "321421"));
+            MoneyFactory moneyFactory,
+            WalletFactory walletFactory, UserService userService) {
+        Money moneyUK = moneyFactory.create(1000, Currency.getInstance(Locale.UK));
+        Money moneyUS1 = moneyFactory.create(545, Currency.getInstance(Locale.US));
+        Money moneyUS2 = moneyFactory.create(545, Currency.getInstance(Locale.US));
+        Wallet walletMember = walletFactory.create(moneyUS1);
+        Wallet walletOrganizer = walletFactory.create(Arrays.asList(moneyUS2, moneyUK));
+//        Wallet walletMember = walletFactory.create("1000");
+//        Wallet walletOrganizer = walletFactory.create(Arrays.asList("3213", "321421"));
         userService.createMember("admin", "admin", "USER", walletMember);
         userService.createMember("a", "a", "USER");
         userService.createOrganizer("q", "q", "USER", walletOrganizer);

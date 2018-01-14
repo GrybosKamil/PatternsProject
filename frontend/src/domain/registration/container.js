@@ -11,17 +11,51 @@ class RegistrationContainer extends React.Component {
 
     static propTypes = {
         registration: PropTypes.object.isRequired,
-        getEmployees: PropTypes.func.isRequired
     };
 
+    pressEnter(event) {
+        if (event.charCode === 13) {
+            this.doRegister();
+        }
+    }
+
+    changeUsername(event) {
+        this.props.changeUsername(event.target.value);
+    }
+
+    changePassword(event) {
+        this.props.changePassword(event.target.value)
+    }
+
+    changePasswordConfirm(event) {
+        this.props.changePasswordConfirm(event.target.value)
+    }
+
+    changeRegistrationType() {
+        this.props.changeRegistrationType(!this.props.registration.registrationType);
+    }
+
+    doRegister() {
+        this.props.doRegister(this.props.registration.username,
+            this.props.registration.password, this.props.registration.passwordConfirm,
+            this.props.registration.registrationType
+        )
+    }
+
     componentDidMount() {
-        this.props.getEmployees();
     }
 
     render() {
         return (
-            <Registration message={this.props.registration.message}
-                          error={this.props.registration.error}/>
+            <Registration
+                error={this.props.registration.error}
+                doRegister={this.doRegister.bind(this)}
+                pressEnter={this.pressEnter.bind(this)}
+                changeUsername={this.changeUsername.bind(this)}
+                changePassword={this.changePassword.bind(this)}
+                changePasswordConfirm={this.changePasswordConfirm.bind(this)}
+                changeRegisterType={this.changeRegistrationType.bind(this)}
+            />
         )
     }
 }

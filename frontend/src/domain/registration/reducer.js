@@ -1,19 +1,56 @@
-import {CHANGE} from './actionTypes'
+import {
+    CHANGE_USERNAME, CHANGE_PASSWORD, CHANGE_PASSWORD_CONFIRM, REGISTER_EMPTY, REGISTER_INVALID,
+    REGISTRATION_FAILED, REGISTRATION_SUCCESS, CHANGE_REGISTRATION_TYPE
+} from './actionTypes'
 
 const initialState = {
-    employees: []
+    username: null,
+    password: null,
+    passwordConfirm: null,
+    registrationType: false,
+    error: null,
+    success: null,
 };
 
 function registration(state = initialState, action) {
     switch (action.type) {
-        case CHANGE:
+        case CHANGE_USERNAME:
             return Object.assign({}, state, {
-                employees: action.employees
+                username: action.payload
+            });
+        case CHANGE_PASSWORD:
+            return Object.assign({}, state, {
+                password: action.payload
+            });
+        case CHANGE_PASSWORD_CONFIRM:
+            return Object.assign({}, state, {
+                passwordConfirm: action.payload
+            });
+        case CHANGE_REGISTRATION_TYPE:
+            return Object.assign({}, state, {
+                registrationType: action.payload
+            });
+        case REGISTER_EMPTY:
+            return Object.assign({}, state, {
+                error: action.payload,
+            });
+        case REGISTER_INVALID:
+            return Object.assign({}, state, {
+                error: action.payload,
+            });
+        case REGISTRATION_FAILED:
+            return Object.assign({}, state, {
+                error: action.payload,
+                success: null,
+            });
+        case REGISTRATION_SUCCESS:
+            return Object.assign({}, state, {
+                success: action.payload,
+                error: null,
             });
         default:
             return state;
     }
-
 }
 
 export default registration

@@ -10,6 +10,10 @@ const apiPath = serverPath + "/api";
 const employees = "/employees";
 const customers = "/customers";
 const authentication = "/authentication";
+const registration = "/registration";
+
+const member = "/member";
+const organizer = "/organizer";
 
 module.exports = {
     protocol: protocol,
@@ -21,6 +25,8 @@ module.exports = {
         employees: apiPath + employees,
         customers: apiPath + customers,
         authentication: apiPath + authentication,
+        registrationMember : apiPath + registration + member,
+        registrationOrganizer : apiPath + registration + organizer,
     },
     token: token
 };

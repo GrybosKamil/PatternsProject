@@ -1,35 +1,48 @@
 import React from 'react';
 import pure from 'recompose/pure'
 
-function Registration({message, error, status}) {
+function Registration({error, pressEnter, changeUsername, changePassword, changePasswordConfirm, changeRegisterType, doRegister}) {
     return (
         <div className="registration-panel">
 
-            <form method="POST" className="form-signin">
+            <div method="POST" className="form-signin">
                 <h2 className="form-signin-heading">Create your account</h2>
-                <div className={"form-group " + status.error ? 'has-error' : ''}>
-                    <input type="text" path="username" className="form-control"
-                           placeholder="Username" autoFocus="true"/>
-                    <span>{error}</span>
-                </div>
-
-                <div className={"form-group " + status.error ? 'has-error' : ''}>
-                    <input type="password" path="password" className="form-control"
+                <div className={"form-group" + error !== null ? 'hasError' : ''}>
+                    <input type="text"
+                           className="form-control"
+                           onChange={changeUsername.bind(this)}
+                           onKeyPress={pressEnter.bind(this)}
+                           placeholder="Username"
+                           autoFocus="true"/>
+                    <input type="password"
+                           className="form-control"
+                           onChange={changePassword.bind(this)}
+                           onKeyPress={pressEnter.bind(this)}
                            placeholder="Password"/>
-                    <span>{error}</span>
-                </div>
-
-                <div className={"form-group " + status.error ? 'has-error' : ''}>
-                    <input type="password" path="passwordConfirm" className="form-control"
+                    <input type="password"
+                           className="form-control"
+                           onChange={changePasswordConfirm.bind(this)}
+                           onKeyPress={pressEnter.bind(this)}
                            placeholder="Confirm your password"/>
-                    <span>{error}</span>
+                    <input type="checkbox"
+                           className="form-control"
+                           default={false}
+                           onChange={changeRegisterType.bind(this)}/>
+                        Organizer
+                    {error ?
+                        <div>{error}</div>
+                        :
+                        null
+                    }
+                    <button className="btn btn-lg btn-primary btn-block"
+                            onClick={doRegister.bind(this)}>
+                        Register
+                    </button>
+                    <h4 className="text-center">
+                        <a href={"/login"}>Login</a>
+                    </h4>
                 </div>
-
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-                <h4 className="text-center">
-                    <a href={"/login"}>Login</a>
-                </h4>
-            </form>
+            </div>
 
         </div>
     )

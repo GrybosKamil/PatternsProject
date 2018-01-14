@@ -5,7 +5,6 @@ const initialState = {
     password: null,
     error: null,
     success: null,
-    isLogged: false,
 };
 
 function login(state = initialState, action) {
@@ -21,30 +20,25 @@ function login(state = initialState, action) {
         case LOGIN_EMPTY:
             return Object.assign({}, state, {
                 error: action.payload,
-                isLogged: false
             });
         case LOGIN_FAILED:
             return Object.assign({}, state, {
                 error: action.payload,
                 success: null,
-                isLogged: false
             });
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 success: action.payload,
                 error: null,
-                isLogged: true
             });
         case LOGOUT:
             return Object.assign({}, state, {
                 success: action.payload,
                 error: null,
-                isLogged: false
             });
         default:
             return state;
     }
-
 }
 
 export default login

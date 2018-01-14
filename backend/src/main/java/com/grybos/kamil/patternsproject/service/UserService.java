@@ -7,11 +7,12 @@ import com.grybos.kamil.patternsproject.security.jwt.JwtService;
 import com.grybos.kamil.patternsproject.support.DateGenerator;
 import com.grybos.kamil.patternsproject.support.StringSupport;
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
 
 @Component
 public class UserService {
@@ -29,11 +30,23 @@ public class UserService {
     @Autowired
     DateGenerator dateGenerator;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public void create(String username, String password, String role) {
+        logger.info("create");
         String salt = stringSupport.generate();
         User u = userFactory.create(username, shaPasswordEncoder.encodePassword(password, salt), salt, role);
         userRepository.save(u);
+    }
+
+    public void createMember(String username, String password, String role) {
+        logger.info("createMember");
+        create(username, password, role);
+    }
+
+    public void createOrganizer(String username, String password, String role) {
+        logger.info("createOrganizer");
+        create(username, password, role);
     }
 
     public User isLoginValid(String username, String pass) {
@@ -45,9 +58,11 @@ public class UserService {
         if (u == null) {
             return null;
         }
+
         if (!u.getPassword().equals(shaPasswordEncoder.encodePassword(password, u.getSalt()))) {
             return null;
         }
+
         return u;
     }
 

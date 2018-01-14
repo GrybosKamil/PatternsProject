@@ -15,7 +15,6 @@ function Login({error, pressEnter, changeUsername, changePassword, doLogin}) {
                                onChange={changeUsername.bind(this)}
                                onKeyPress={pressEnter.bind(this)}
                                autoFocus="true"/>
-
                         <input name="password" type="password"
                                className="form-control"
                                onChange={changePassword.bind(this)}
@@ -35,7 +34,6 @@ function Login({error, pressEnter, changeUsername, changePassword, doLogin}) {
                         </h4>
                     </div>
                 </div>
-
             </div>
 
         </div>

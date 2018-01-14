@@ -19,6 +19,12 @@ public class Organizer extends Member {
         super(username, name);
     }
 
+    public Organizer(String username, String name,
+                     long money
+//                     Money money
+    ) {
+        super(username, name, money);
+    }
 
     public String getDescription() {
         return description;
@@ -31,7 +37,10 @@ public class Organizer extends Member {
     @Override
     public String toString() {
         return String.format(
-                "Organizer[id=%d, username='%s', name='%s' description='%s'",
-                getId(), getUsername(), getName(), getDescription());
+                "Organizer[" +
+                        "member=[%s], " +
+                        "description='%s'" +
+                        "]",
+                super.toString(), getDescription());
     }
 }

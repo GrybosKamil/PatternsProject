@@ -1,12 +1,5 @@
 package com.grybos.kamil.patternsproject.security.filter;
 
-import java.io.IOException;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.grybos.kamil.patternsproject.model.User;
 import com.grybos.kamil.patternsproject.security.SecurityAppContext;
 import com.grybos.kamil.patternsproject.security.factory.UsernamePasswordAuthenticationTokenFactory;
@@ -14,11 +7,16 @@ import com.grybos.kamil.patternsproject.service.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -65,5 +63,4 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         chain.doFilter(request, response);
     }
-
 }

@@ -54,6 +54,10 @@ public class User {
         this.role = role;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getToken() {
         return token;
     }
@@ -80,8 +84,14 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User[id=%d, username='%s', password='%s', salt='%s', role='%s']",
-                id, username, password, salt, role);
+                "User[" +
+                        "id=%d, " +
+                        "username='%s', " +
+                        "password='%s', " +
+                        "salt='%s', " +
+                        "role='%s'" +
+                        "]",
+                getId(), getUsername(), getPassword(), getSalt(), getRole());
     }
 
 }

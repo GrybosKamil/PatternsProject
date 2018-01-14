@@ -1,9 +1,9 @@
 package com.grybos.kamil.patternsproject.service;
 
+//import com.grybos.kamil.patternsproject.model.Money;
 import com.grybos.kamil.patternsproject.model.Organizer;
 import com.grybos.kamil.patternsproject.model.factory.OrganizerFactory;
 import com.grybos.kamil.patternsproject.repository.OrganizerRepository;
-import com.grybos.kamil.patternsproject.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ public class OrganizerService {
     @Autowired
     OrganizerRepository organizerRepository;
     @Autowired
-    UserRepository userRepository;
-    @Autowired
     OrganizerFactory organizerFactory;
 
     private static final Logger logger = LoggerFactory.getLogger(OrganizerService.class);
@@ -24,6 +22,15 @@ public class OrganizerService {
     public void create(String username, String name) {
         logger.info("create");
         Organizer m = organizerFactory.create(username, name);
+        organizerRepository.save(m);
+    }
+
+    public void create(String username, String name,
+                       long money
+//                       Money money
+    ) {
+        logger.info("create");
+        Organizer m = organizerFactory.create(username, name, money);
         organizerRepository.save(m);
     }
 

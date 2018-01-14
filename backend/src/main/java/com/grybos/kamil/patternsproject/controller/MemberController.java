@@ -3,8 +3,6 @@ package com.grybos.kamil.patternsproject.controller;
 import com.grybos.kamil.patternsproject.model.Member;
 import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.service.MemberService;
-import com.grybos.kamil.patternsproject.service.OrganizerService;
-import com.grybos.kamil.patternsproject.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +17,14 @@ public class MemberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-    @Autowired
-    UserService userService;
+//    @Autowired
+//    UserService userService;
     @Autowired
     MemberService memberService;
     @Autowired
     MemberFactory memberFactory;
-    @Autowired
-    OrganizerService organizerService;
+//    @Autowired
+//    OrganizerService organizerService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/get")
     Member getMember(@RequestParam(value = "username") String username) {

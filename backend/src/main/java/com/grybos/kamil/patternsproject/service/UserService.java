@@ -1,6 +1,7 @@
 package com.grybos.kamil.patternsproject.service;
 
 import com.grybos.kamil.patternsproject.model.Member;
+//import com.grybos.kamil.patternsproject.model.Money;
 import com.grybos.kamil.patternsproject.model.User;
 import com.grybos.kamil.patternsproject.model.factory.UserFactory;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
@@ -50,10 +51,28 @@ public class UserService {
         memberService.create(username, username);
     }
 
+    public void createMember(String username, String password, String role,
+                             long money
+//                             Money money
+    ) {
+        logger.info("createMember");
+        create(username, password, role);
+        memberService.create(username, username, money);
+    }
+
     public void createOrganizer(String username, String password, String role) {
         logger.info("createOrganizer");
         create(username, password, role);
         organizerService.create(username, username);
+    }
+
+    public void createOrganizer(String username, String password, String role,
+                                long money
+//                             Money money
+ ) {
+        logger.info("createOrganizer");
+        create(username, password, role);
+        organizerService.create(username, username, money);
     }
 
     public Member getMemmber(String token, String secret) {

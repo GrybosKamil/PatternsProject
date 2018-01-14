@@ -1,6 +1,7 @@
 package com.grybos.kamil.patternsproject.service;
 
 import com.grybos.kamil.patternsproject.model.Member;
+//import com.grybos.kamil.patternsproject.model.Money;
 import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.repository.MemberRepository;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
@@ -27,6 +28,14 @@ public class MemberService {
         memberRepository.save(m);
     }
 
+    public void create(String username, String name,
+                       long money
+//            Money money
+    ) {
+        logger.info("create");
+        Member m = memberFactory.create(username, name, money);
+        memberRepository.save(m);
+    }
 
     public Member findByUsername(String username) {
         return memberRepository.findByUsername(username);

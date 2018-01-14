@@ -11,24 +11,27 @@ function Application({employees, logged, doLogin, doLogout}) {
 
     return (
         <div className="App">
+            <nav className="navbar navbar-inverse">
+                <div className="container-fluid">
+                    <div className="navbar-header">
+                        <a className="navbar-brand" href="/">TakeTheChallenge</a>
+                    </div>
+                    <ul className="nav navbar-nav">
+                        {logged ?
+                            <li onClick={doLogout}><a href={"/login"}>Logout</a></li>
+                            :
+                            <li onClick={doLogin}><a href={"/login"}>Login</a></li>
+                        }
+                        <li><a>All challenges</a></li>
+                        <li><a>My challenges</a></li>
+                        <li><a>Statistics</a></li>
+                    </ul>
+                </div>
+            </nav>
             <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
                 <h2>Welcome to Spring Boot React Starter!</h2>
             </div>
-
-            {logged ?
-                <button className={"btn btn-lg btn-primary btn-block"}
-                        href={"/login"}
-                        onClick={doLogout}>
-                    Logout
-                </button>
-                :
-                <button className={"btn btn-lg btn-primary btn-block"}
-                        href={"/login"}
-                        onClick={doLogin}>
-                    Login
-                </button>
-            }
 
             <p className="App-intro">
                 Hello World!

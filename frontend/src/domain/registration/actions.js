@@ -2,6 +2,7 @@ import base64 from "base-64"
 import utf8 from "utf8"
 import {endpoints} from '../../configuration/configuration'
 import * as registrationActionTypes from './actionTypes'
+import {isAuthenticated as isauthenticated} from '../login/actions'
 import {requestPost} from "../../utils/apiUtils";
 import {pushHistory} from "../../utils/utils";
 
@@ -72,6 +73,7 @@ export function changePassword(password) {
         });
     }
 }
+
 export function changeRegistrationType(registrationType) {
     return function (dispatch) {
         dispatch({
@@ -88,4 +90,8 @@ export function changePasswordConfirm(passwordConfirm) {
             payload: passwordConfirm
         });
     }
+}
+
+export function isAuthenticated() {
+    return isauthenticated();
 }

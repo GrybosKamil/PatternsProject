@@ -43,8 +43,8 @@ class ApplicationContainer extends React.Component {
             <Application
                 logged={isLogged()}
                 employees={this.props.application.employees}
-                doLogout={this.doLogout.bind(this)}
                 doLogin={this.doLogin.bind(this)}
+                doLogout={this.doLogout.bind(this)}
             />
         )
     }

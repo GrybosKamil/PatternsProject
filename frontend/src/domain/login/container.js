@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import * as LoginActions from "./actions";
 import {Login} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
+import {isLogged, pushHistory} from "../../utils/utils";
 
 class LoginContainer extends React.Component {
 
@@ -31,7 +32,16 @@ class LoginContainer extends React.Component {
     }
 
     componentDidMount() {
+        if (isLogged() &&
+            this.props.isAuthenticated()
+                .then(() => true)
+                .catch(() => false)
+        ) {
+            console.log("Already logged");
+            pushHistory("/");
+        }
     }
+
 
     render() {
         return (
@@ -44,17 +54,20 @@ class LoginContainer extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+function
+
+mapStateToProps(state) {
     return createStructuredSelector({
         login: createSelector(state => state.login, login => login),
     })
 }
 
-function mapDispatchToProps(dispatch) {
+function
+
+mapDispatchToProps(dispatch) {
     return bindActionCreators(LoginActions, dispatch);
 }
 
-export default connect(
-    mapStateToProps,
+export default connect(mapStateToProps,
     mapDispatchToProps,
 )(LoginContainer)

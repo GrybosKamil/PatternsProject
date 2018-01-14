@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import * as RegistrationActions from './actions'
 import {Registration} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
+import {isLogged, pushHistory} from "../../utils/utils";
 
 class RegistrationContainer extends React.Component {
 
@@ -43,6 +44,14 @@ class RegistrationContainer extends React.Component {
     }
 
     componentDidMount() {
+        if (isLogged() &&
+            this.props.isAuthenticated()
+                .then(() => true)
+                .catch(() => false)
+        ) {
+            console.log("Already logged");
+            pushHistory("/");
+        }
     }
 
     render() {

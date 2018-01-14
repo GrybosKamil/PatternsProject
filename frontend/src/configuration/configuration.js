@@ -1,4 +1,5 @@
 const token = "token";
+const userName = "username";
 
 const protocol = "http";
 const host = "localhost";
@@ -21,12 +22,14 @@ module.exports = {
     port: port,
     serverPath: serverPath,
     apiPath: apiPath,
-    endpoints: {
+    endPoints: {
         employees: apiPath + employees,
         customers: apiPath + customers,
+        member: apiPath + member,
         authentication: apiPath + authentication,
         registrationMember : apiPath + registration + member,
         registrationOrganizer : apiPath + registration + organizer,
     },
-    token: token
+    token: token,
+    userName: userName
 };

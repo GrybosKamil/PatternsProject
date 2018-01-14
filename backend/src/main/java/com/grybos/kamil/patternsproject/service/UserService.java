@@ -1,5 +1,6 @@
 package com.grybos.kamil.patternsproject.service;
 
+import com.grybos.kamil.patternsproject.model.Member;
 import com.grybos.kamil.patternsproject.model.User;
 import com.grybos.kamil.patternsproject.model.factory.UserFactory;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
@@ -18,17 +19,21 @@ import org.springframework.util.StringUtils;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
-    @Autowired
     ShaPasswordEncoder shaPasswordEncoder;
     @Autowired
     StringSupport stringSupport;
     @Autowired
-    UserFactory userFactory;
-    @Autowired
     JwtService jwtService;
     @Autowired
     DateGenerator dateGenerator;
+    @Autowired
+    UserFactory userFactory;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    MemberService memberService;
+    @Autowired
+    OrganizerService organizerService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -42,11 +47,31 @@ public class UserService {
     public void createMember(String username, String password, String role) {
         logger.info("createMember");
         create(username, password, role);
+        memberService.create(username, username);
     }
 
     public void createOrganizer(String username, String password, String role) {
         logger.info("createOrganizer");
         create(username, password, role);
+        organizerService.create(username, username);
+    }
+
+    public Member getMemmber(String token, String secret) {
+        logger.info("getMember");
+        String username = jwtService.getUsername(token, secret);
+        Member member;
+        if (username != null) {
+            User user = userRepository.findByUsername(username);
+            if (user != null && token.equals(user.getToken()) && jwtService.isValid(token, secret)) {
+                member = memberService.findByUsername(username);
+                if (member == null) {
+                    member = memberService.createNotFoundMember(username);
+                }
+                return member;
+            }
+        }
+
+        return memberService.createNotFoundUser();
     }
 
     public User isLoginValid(String username, String pass) {

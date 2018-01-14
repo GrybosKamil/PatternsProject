@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {endpoints} from './configuration/configuration'
+import {endPoints} from './configuration/configuration'
 import {requestDelete, requestGetEmbedded} from "./utils/apiUtils";
 
 class Employee extends React.Component {
@@ -15,7 +15,7 @@ class Employee extends React.Component {
     }
 
     triggerDownloadCustomers() {
-        requestGetEmbedded(endpoints.customers)
+        requestGetEmbedded(endPoints.customers)
             .then(data => {
                 console.log(data);
             })

@@ -1,7 +1,7 @@
 import {CHANGE_USERNAME, CHANGE_PASSWORD, LOGIN_EMPTY, LOGOUT, LOGIN_FAILED, LOGIN_SUCCESS} from './actionTypes'
 
 const initialState = {
-    username: null,
+    username: localStorage.getItem("username"),
     password: null,
     error: null,
     success: null,
@@ -29,11 +29,14 @@ function login(state = initialState, action) {
         case LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 success: action.payload,
+                password: null,
                 error: null,
             });
         case LOGOUT:
             return Object.assign({}, state, {
                 success: action.payload,
+                username: null,
+                password: null,
                 error: null,
             });
         default:

@@ -32,6 +32,7 @@ class ApplicationContainer extends React.Component {
         ) {
             console.log("logged, get employees!");
             this.props.getEmployees();
+            this.props.getMember(this.props.login.username);
         } else {
             console.log("not logged, redirect!");
             pushHistory("/login");

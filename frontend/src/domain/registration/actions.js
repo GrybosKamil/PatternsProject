@@ -1,6 +1,6 @@
 import base64 from "base-64"
 import utf8 from "utf8"
-import {endpoints} from '../../configuration/configuration'
+import {endPoints} from '../../configuration/configuration'
 import * as registrationActionTypes from './actionTypes'
 import {isAuthenticated as isauthenticated} from '../login/actions'
 import {requestPost} from "../../utils/apiUtils";
@@ -11,9 +11,9 @@ export function doRegister(username, password, passwordConfirm, registerType) {
         return function (dispatch) {
             let url;
             if (registerType) {
-                url = endpoints.registrationOrganizer;
+                url = endPoints.registrationOrganizer;
             } else {
-                url = endpoints.registrationMember;
+                url = endPoints.registrationMember;
             }
             url = url +
                 '?username=' + username +

@@ -1,6 +1,6 @@
 import base64 from "base-64"
 import utf8 from "utf8"
-import {token, endpoints, apiPath} from '../../configuration/configuration'
+import {apiPath, endPoints, token, userName} from '../../configuration/configuration'
 import {requestGet, requestPost} from "../../utils/apiUtils";
 import {pushHistory} from "../../utils/utils";
 import * as loginActionTypes from '../login/actionTypes'
@@ -35,9 +35,12 @@ export function isAuthenticated() {
             })
             .catch((error) => {
                 dispatch({
-                    type: loginActionTypes.IS_NOT_AUTHENTICATED,
+                    type: loginActionTypes.LOGOUT,
                     payload: ''
                 });
+                localStorage.removeItem(userName);
+                localStorage.removeItem(token);
+                pushHistory("/");
                 return error;
             })
     }
@@ -46,12 +49,15 @@ export function isAuthenticated() {
 export function doLogin(username, password) {
     if (username && password) {
         return function (dispatch) {
-            let url = endpoints.authentication + '?username='
-                + username + '&password=' + base64.encode(utf8.encode(password));
+            let url = endPoints.authentication +
+                '?username=' + username +
+                '&password=' + base64.encode(utf8.encode(password));
             requestPost(url)
                 .then((data) => {
-                    sessionStorage.removeItem(token);
-                    sessionStorage.setItem(token, data.token);
+                    localStorage.removeItem(token);
+                    localStorage.setItem(token, data.token);
+                    localStorage.removeItem(userName);
+                    localStorage.setItem(userName, username);
                     dispatch({
                         type: loginActionTypes.LOGIN_SUCCESS,
                         payload: data.token
@@ -77,10 +83,11 @@ export function doLogin(username, password) {
 
 export function doLogout() {
     console.log("remove");
-    sessionStorage.removeItem(token);
+    localStorage.removeItem(token);
+    localStorage.removeItem(userName);
     pushHistory("/login");
     return {
-        type: loginActionTypes.IS_NOT_AUTHENTICATED,
+        type: loginActionTypes.LOGOUT,
         payload: ''
     };
 }

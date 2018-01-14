@@ -19,7 +19,7 @@ export const getConfiguration = () => {
     let configuration = {};
     if (isLogged()) {
         configuration = {
-            headers: {'Authorization': 'Bearer ' + sessionStorage.getItem(token)}
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem(token)}
         }
     }
     return configuration;

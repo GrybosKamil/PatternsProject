@@ -1,8 +1,8 @@
 package com.grybos.kamil.patternsproject.service;
 
-import com.grybos.kamil.patternsproject.model.Member;
-import com.grybos.kamil.patternsproject.model.User;
-import com.grybos.kamil.patternsproject.model.Wallet;
+import com.grybos.kamil.patternsproject.model.user.Member;
+import com.grybos.kamil.patternsproject.model.user.User;
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.factory.UserFactory;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
 import com.grybos.kamil.patternsproject.security.jwt.JwtService;
@@ -106,6 +106,14 @@ public class UserService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public void deleteByUsername(String username) {
+        userRepository.deleteByUsername(username);
+    }
+
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 
     public User createUserToken(String username, String secret) {

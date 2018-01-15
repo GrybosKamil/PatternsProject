@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.model.factory;
 
-import com.grybos.kamil.patternsproject.model.Money;
+import com.grybos.kamil.patternsproject.model.money.Money;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

@@ -1,6 +1,6 @@
 import {endPoints} from '../../configuration/configuration'
 import * as applicationActionTypes from './actionTypes'
-import {requestGet, requestPost} from "../../utils/apiUtils";
+import {requestGet} from "../../utils/apiUtils";
 
 import {doLogout as logout, isAuthenticated as isauthenticated} from '../login/actions'
 
@@ -15,8 +15,7 @@ export function changeName(name) {
 
 export function getMember(username) {
     return (dispatch, getState) => {
-        let url = endPoints.member + "/get" +
-            "?username=" + username;
+        let url = endPoints.member + "/get";
         return requestGet(url)
             .then(data => {
                 console.log(data);
@@ -38,8 +37,7 @@ export function getMember(username) {
 export function doChangeName(username, originalName, name) {
     return (dispatch, getState) => {
         let url = endPoints.member + "/changename" +
-            "?username=" + username +
-            "&name=" + name;
+            "?name=" + name;
         return requestGet(url)
             .then(data => {
                 console.log(data);

@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.model.factory;
 
-import com.grybos.kamil.patternsproject.model.User;
+import com.grybos.kamil.patternsproject.model.user.User;
 import org.springframework.stereotype.Component;
 
 @Component

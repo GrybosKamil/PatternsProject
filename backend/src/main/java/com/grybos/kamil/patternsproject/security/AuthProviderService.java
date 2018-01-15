@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.security;
 
-import com.grybos.kamil.patternsproject.model.User;
+import com.grybos.kamil.patternsproject.model.user.User;
 import com.grybos.kamil.patternsproject.security.factory.UsernamePasswordAuthenticationTokenFactory;
 import com.grybos.kamil.patternsproject.service.UserService;
 import org.slf4j.Logger;

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as ApplicationActions from './actions'
-import {Header, MemberInterface} from "./index"
+import {MemberInterface} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
-import {isLogged, pushHistory} from "../../utils/utils";
+import {pushHistory} from "../../utils/utils";
 
 class ApplicationContainer extends React.Component {
 
@@ -39,7 +39,7 @@ class ApplicationContainer extends React.Component {
     }
 
     componentDidMount() {
-        if (isLogged() &&
+        if (this.props.login.isLogged &&
             this.props.isAuthenticated()
                 .then(() => true)
                 .catch(() => false)
@@ -53,12 +53,6 @@ class ApplicationContainer extends React.Component {
     render() {
         return (
             <div>
-
-                <Header
-                    logged={isLogged()}
-                    doLogin={this.doLogin.bind(this)}
-                    doLogout={this.doLogout.bind(this)}
-                />
                 <MemberInterface
                     error={this.props.application.error}
                     success={this.props.application.success}
@@ -68,7 +62,6 @@ class ApplicationContainer extends React.Component {
                     changeName={this.changeName.bind(this)}
                     doChangeName={this.doChangeName.bind(this)}
                 />
-
             </div>
         )
     }

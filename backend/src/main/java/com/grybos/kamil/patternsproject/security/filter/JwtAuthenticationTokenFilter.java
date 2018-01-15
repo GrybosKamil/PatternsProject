@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.security.filter;
 
-import com.grybos.kamil.patternsproject.model.User;
+import com.grybos.kamil.patternsproject.model.user.User;
 import com.grybos.kamil.patternsproject.security.SecurityAppContext;
 import com.grybos.kamil.patternsproject.security.factory.UsernamePasswordAuthenticationTokenFactory;
 import com.grybos.kamil.patternsproject.service.UserService;

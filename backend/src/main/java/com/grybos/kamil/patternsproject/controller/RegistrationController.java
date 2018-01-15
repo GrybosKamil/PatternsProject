@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.controller;
 
-import com.grybos.kamil.patternsproject.model.User;
+import com.grybos.kamil.patternsproject.model.user.User;
 import com.grybos.kamil.patternsproject.service.UserService;
 import org.apache.catalina.connector.Response;
 import org.apache.commons.codec.binary.Base64;

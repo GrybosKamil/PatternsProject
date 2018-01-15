@@ -1,4 +1,4 @@
-package com.grybos.kamil.patternsproject.model;
+package com.grybos.kamil.patternsproject.model.money;
 
 import org.junit.Assert;
 
@@ -7,19 +7,10 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Locale;
 
-//@Data
-//@Entity
-//@Embeddable
 @Embeddable
 public class Money {
 
-    //    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Integer id;
-    //    @Column(nullable = false)
     private final long amount;
-    //    @Column(nullable = false)
-//    @ManyToOne
     private final Currency currency;
 
     private static final int[] cents = new int[]{1, 10, 100, 1000};

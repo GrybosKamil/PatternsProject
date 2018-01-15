@@ -6,12 +6,13 @@ import {connect} from 'react-redux'
 import * as RegistrationActions from './actions'
 import {Registration} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
-import {isLogged, pushHistory} from "../../utils/utils";
+import {pushHistory} from "../../utils/utils";
 
 class RegistrationContainer extends React.Component {
 
     static propTypes = {
         registration: PropTypes.object.isRequired,
+        login: PropTypes.object.isRequired,
     };
 
     pressEnter(event) {
@@ -44,7 +45,7 @@ class RegistrationContainer extends React.Component {
     }
 
     componentDidMount() {
-        if (isLogged() &&
+        if (this.props.login.isLogged &&
             this.props.isAuthenticated()
                 .then(() => true)
                 .catch(() => false)
@@ -71,7 +72,8 @@ class RegistrationContainer extends React.Component {
 
 function mapStateToProps(state) {
     return createStructuredSelector({
-        registration: createSelector(state => state.registration, registration => registration)
+        registration: createSelector(state => state.registration, registration => registration),
+        login: createSelector(state => state.login, registration => registration)
     })
 }
 

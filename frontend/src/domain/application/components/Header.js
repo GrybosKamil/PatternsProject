@@ -1,10 +1,7 @@
 import React from 'react';
-import logo from '../../../logo.svg';
 import pure from 'recompose/pure'
 
-import Employee from "../../../Employee";
-
-function Application({logged, doLogin, doLogout}) {
+function Header({logged, doLogin, doLogout}) {
 
     return (
         <div className="App">
@@ -25,19 +22,9 @@ function Application({logged, doLogin, doLogout}) {
                     </ul>
                 </div>
             </nav>
-            <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <h2>Welcome to Spring Boot React Starter!</h2>
-            </div>
-
-            <p className="App-intro">
-                Hello World!
-                Dude, what's your name?
-                Because, mine is Kamil
-            </p>
 
         </div>
     )
 }
 
-export default pure(Application)
+export default pure(Header)

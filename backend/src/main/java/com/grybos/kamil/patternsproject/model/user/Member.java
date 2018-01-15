@@ -1,5 +1,6 @@
-package com.grybos.kamil.patternsproject.model;
+package com.grybos.kamil.patternsproject.model.user;
 
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -8,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Data

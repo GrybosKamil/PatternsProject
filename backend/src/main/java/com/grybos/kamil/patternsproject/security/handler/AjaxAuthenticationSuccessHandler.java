@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.security.handler;
 
-import com.grybos.kamil.patternsproject.model.User;
+import com.grybos.kamil.patternsproject.model.user.User;
 import com.grybos.kamil.patternsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

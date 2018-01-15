@@ -1,7 +1,7 @@
 package com.grybos.kamil.patternsproject.service;
 
-import com.grybos.kamil.patternsproject.model.Member;
-import com.grybos.kamil.patternsproject.model.Wallet;
+import com.grybos.kamil.patternsproject.model.user.Member;
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.model.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.repository.MemberRepository;
@@ -10,8 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class MemberService {

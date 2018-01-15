@@ -1,7 +1,7 @@
 package com.grybos.kamil.patternsproject.model.factory;
 
-import com.grybos.kamil.patternsproject.model.Member;
-import com.grybos.kamil.patternsproject.model.Wallet;
+import com.grybos.kamil.patternsproject.model.user.Member;
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import org.springframework.stereotype.Component;
 
 @Component

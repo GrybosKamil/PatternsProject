@@ -1,7 +1,7 @@
 package com.grybos.kamil.patternsproject.database;
 
-import com.grybos.kamil.patternsproject.model.Money;
-import com.grybos.kamil.patternsproject.model.Wallet;
+import com.grybos.kamil.patternsproject.model.money.Money;
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.factory.MoneyFactory;
 import com.grybos.kamil.patternsproject.model.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.service.UserService;

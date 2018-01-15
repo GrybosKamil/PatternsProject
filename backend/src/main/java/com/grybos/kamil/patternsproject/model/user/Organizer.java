@@ -1,5 +1,6 @@
-package com.grybos.kamil.patternsproject.model;
+package com.grybos.kamil.patternsproject.model.user;
 
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import lombok.Data;
 
 import javax.persistence.Column;

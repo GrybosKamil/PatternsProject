@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import * as LoginActions from "./actions";
 import {Login} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
-import {isLogged, pushHistory} from "../../utils/utils";
+import {pushHistory} from "../../utils/utils";
 
 class LoginContainer extends React.Component {
 
@@ -32,7 +32,7 @@ class LoginContainer extends React.Component {
     }
 
     componentDidMount() {
-        if (isLogged() &&
+        if (this.props.login.isLogged &&
             this.props.isAuthenticated()
                 .then(() => true)
                 .catch(() => false)

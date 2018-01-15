@@ -1,4 +1,4 @@
-package com.grybos.kamil.patternsproject.model;
+package com.grybos.kamil.patternsproject.model.user;
 
 import lombok.Data;
 

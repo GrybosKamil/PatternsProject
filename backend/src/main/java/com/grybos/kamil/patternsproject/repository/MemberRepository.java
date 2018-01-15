@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.repository;
 
-import com.grybos.kamil.patternsproject.model.Member;
+import com.grybos.kamil.patternsproject.model.user.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,12 +15,12 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Transactional
     Member findByName(String name);
 
+    @Transactional
+    Member findByUsername(String username);
+
     @Modifying
     @Transactional
     Member save(Member member);
-
-    @Transactional
-    Member findByUsername(String username);
 
     @Modifying
     @Transactional

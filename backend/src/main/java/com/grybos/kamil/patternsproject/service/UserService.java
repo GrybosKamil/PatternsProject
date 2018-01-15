@@ -1,9 +1,9 @@
 package com.grybos.kamil.patternsproject.service;
 
+import com.grybos.kamil.patternsproject.model.factory.UserFactory;
+import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.user.Member;
 import com.grybos.kamil.patternsproject.model.user.User;
-import com.grybos.kamil.patternsproject.model.money.Wallet;
-import com.grybos.kamil.patternsproject.model.factory.UserFactory;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
 import com.grybos.kamil.patternsproject.security.jwt.JwtService;
 import com.grybos.kamil.patternsproject.support.DateGenerator;

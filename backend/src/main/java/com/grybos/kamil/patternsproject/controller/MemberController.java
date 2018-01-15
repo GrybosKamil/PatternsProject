@@ -1,8 +1,8 @@
 package com.grybos.kamil.patternsproject.controller;
 
+import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.model.user.Member;
 import com.grybos.kamil.patternsproject.model.user.User;
-import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.service.MemberService;
 import com.grybos.kamil.patternsproject.service.UserService;
 import org.slf4j.Logger;

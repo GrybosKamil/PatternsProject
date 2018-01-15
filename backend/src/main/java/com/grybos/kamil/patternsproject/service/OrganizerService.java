@@ -1,9 +1,9 @@
 package com.grybos.kamil.patternsproject.service;
 
-import com.grybos.kamil.patternsproject.model.user.Organizer;
-import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.factory.OrganizerFactory;
 import com.grybos.kamil.patternsproject.model.factory.WalletFactory;
+import com.grybos.kamil.patternsproject.model.money.Wallet;
+import com.grybos.kamil.patternsproject.model.user.Organizer;
 import com.grybos.kamil.patternsproject.repository.OrganizerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

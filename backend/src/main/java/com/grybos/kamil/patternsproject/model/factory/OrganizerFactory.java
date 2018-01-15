@@ -10,6 +10,7 @@ public class OrganizerFactory {
     public Organizer create(String username, String name) {
         return new Organizer(username, name);
     }
+
     public Organizer create(String username, String name, Wallet wallet) {
         return new Organizer(username, name, wallet);
     }

@@ -1,4 +1,4 @@
-import {CHANGE_USERNAME, CHANGE_PASSWORD, LOGIN_EMPTY, LOGOUT, LOGIN_FAILED, LOGIN_SUCCESS} from './actionTypes'
+import {CHANGE_PASSWORD, CHANGE_USERNAME, LOGIN_EMPTY, LOGIN_FAILED, LOGIN_SUCCESS, LOGOUT} from './actionTypes'
 import {token, userName} from '../../configuration/configuration'
 
 const initialState = {

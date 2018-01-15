@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Switch, Route} from 'react-router-dom'
+import {Route, Router, Switch} from 'react-router-dom'
 import {LoginContainer} from '../domain/login'
 import {RegistrationContainer} from "../domain/registration";
 import {HeaderContainer} from "../domain/header";

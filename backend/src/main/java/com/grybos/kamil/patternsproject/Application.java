@@ -11,7 +11,7 @@ public class Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-//    @Value("${rest.api.base.path}")
+    //    @Value("${rest.api.base.path}")
     @Value("/api")
     private String restApiBasePath;
 

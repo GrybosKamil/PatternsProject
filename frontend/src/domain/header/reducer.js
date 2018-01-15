@@ -1,5 +1,3 @@
-import {} from './actionTypes'
-
 const initialState = {
     // name: null,
     // drawName: null,

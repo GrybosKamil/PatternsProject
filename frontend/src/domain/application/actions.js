@@ -62,7 +62,6 @@ export function doChangeName(username, originalName, name) {
     }
 }
 
-
 export function doLogout() {
     return logout();
 }

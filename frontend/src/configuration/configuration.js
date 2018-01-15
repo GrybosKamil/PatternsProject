@@ -27,8 +27,8 @@ module.exports = {
         customers: apiPath + customers,
         member: apiPath + member,
         authentication: apiPath + authentication,
-        registrationMember : apiPath + registration + member,
-        registrationOrganizer : apiPath + registration + organizer,
+        registrationMember: apiPath + registration + member,
+        registrationOrganizer: apiPath + registration + organizer,
     },
     token: token,
     userName: userName

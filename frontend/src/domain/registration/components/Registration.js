@@ -28,7 +28,7 @@ function Registration({error, pressEnter, changeUsername, changePassword, change
                            className="form-control"
                            default={false}
                            onChange={changeRegisterType.bind(this)}/>
-                        Organizer
+                    Organizer
                     {error ?
                         <div>{error}</div>
                         :

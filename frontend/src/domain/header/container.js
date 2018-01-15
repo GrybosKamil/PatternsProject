@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import * as HeaderActions from './actions'
 import {Header} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
-import {pushHistory, getActualUrl} from "../../utils/utils";
+import {getActualUrl, pushHistory} from "../../utils/utils";
 
 class HeaderContainer extends React.Component {
 

@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class MemberService {
 
@@ -37,15 +39,28 @@ public class MemberService {
         memberRepository.save(m);
     }
 
-    public Member findByUsername(String username) {
-        return memberRepository.findByUsername(username);
-    }
-
     public Member createNotFoundUser() {
         return memberFactory.createNotFoundUser();
     }
 
     public Member createNotFoundMember(String username) {
         return memberFactory.createNotFoundMember(username);
+    }
+
+
+    public Member findByUsername(String username) {
+        return memberRepository.findByUsername(username);
+    }
+
+    public Member findByName(String name) {
+        return memberRepository.findByName(name);
+    }
+
+    public Member save(Member member) {
+        return memberRepository.save(member);
+    }
+
+    public int updateName(String username, String name) {
+        return memberRepository.updateName(username, name);
     }
 }

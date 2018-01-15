@@ -4,10 +4,7 @@ import pure from 'recompose/pure'
 
 import Employee from "../../../Employee";
 
-function Application({employees, logged, doLogin, doLogout}) {
-    let rows = employees.map((employee, i) =>
-        (<Employee key={i} employee={employee}/>)
-    );
+function Application({logged, doLogin, doLogout}) {
 
     return (
         <div className="App">
@@ -38,17 +35,6 @@ function Application({employees, logged, doLogin, doLogout}) {
                 Dude, what's your name?
                 Because, mine is Kamil
             </p>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Years</th>
-                </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
 
         </div>
     )

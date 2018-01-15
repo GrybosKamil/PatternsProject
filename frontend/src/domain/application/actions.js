@@ -1,28 +1,15 @@
 import {endPoints} from '../../configuration/configuration'
 import * as applicationActionTypes from './actionTypes'
-import {requestGet, requestGetEmbedded} from "../../utils/apiUtils";
+import {requestGet, requestPost} from "../../utils/apiUtils";
 
 import {doLogout as logout, isAuthenticated as isauthenticated} from '../login/actions'
 
-export function getEmployees() {
-    return (dispatch, getState) => {
-        return requestGetEmbedded(endPoints.employees)
-            .then(data => {
-                console.log(data);
-                dispatch({
-                    type: applicationActionTypes.CHANGE,
-                    employees: data.employees
-                });
-                return data.employees;
-            })
-            .catch(error => {
-                console.log(error);
-                dispatch({
-                    type: applicationActionTypes.CHANGE,
-                    employees: []
-                });
-                return error;
-            });
+export function changeName(name) {
+    return function (dispatch) {
+        dispatch({
+            type: applicationActionTypes.DRAW_NAME,
+            payload: name
+        });
     }
 }
 
@@ -33,22 +20,50 @@ export function getMember(username) {
         return requestGet(url)
             .then(data => {
                 console.log(data);
-                // dispatch({
-                //     type: applicationActionTypes.CHANGE,
-                //     employees: data.employees
-                // });
-                // return data.employees;
+                dispatch({
+                    type: applicationActionTypes.GET_NAME,
+                    payload: data.name
+                });
+                return data
             })
             .catch(error => {
-                // console.log(error);
-                // dispatch({
-                //     type: applicationActionTypes.CHANGE,
-                //     employees: []
-                // });
-                // return error;
+                dispatch({
+                    type: applicationActionTypes.GET_MEMBER_ERROR,
+                });
+                return error;
             });
     }
 }
+
+export function doChangeName(username, originalName, name) {
+    return (dispatch, getState) => {
+        let url = endPoints.member + "/changename" +
+            "?username=" + username +
+            "&name=" + name;
+        return requestGet(url)
+            .then(data => {
+                console.log(data);
+                if (data.name === originalName) {
+                    dispatch({
+                        type: applicationActionTypes.CHANGE_NAME_ERROR
+                    });
+                } else {
+                    dispatch({
+                        type: applicationActionTypes.CHANGE_NAME,
+                        payload: data.name
+                    });
+                }
+                return data
+            })
+            .catch(error => {
+                dispatch({
+                    type: applicationActionTypes.CHANGE_NAME_ERROR,
+                });
+                return error;
+            });
+    }
+}
+
 
 export function doLogout() {
     return logout();

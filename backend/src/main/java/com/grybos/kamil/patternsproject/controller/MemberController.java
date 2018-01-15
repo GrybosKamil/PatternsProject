@@ -17,7 +17,7 @@ public class MemberController {
 
     private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-//    @Autowired
+    //    @Autowired
 //    UserService userService;
     @Autowired
     MemberService memberService;
@@ -40,6 +40,35 @@ public class MemberController {
             member = memberFactory.createNotFoundMember(username);
         }
 
+        return member;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/changename")
+    Member changeName(@RequestParam(value = "username") String username, @RequestParam(value = "name") String name) {
+        logger.info(name);
+        Member member = memberService.findByUsername(username);
+        if (member == null) {
+            member = memberFactory.createNotFoundMember(username);
+        } else {
+            Member m2 = memberService.findByName(name);
+            if (m2 == null) {
+                logger.info("change?");
+                member.setName(name);
+                Member m3 = memberService.save(member);
+                logger.info(m3.toString());
+//                int affectedRows = memberService.updateName(username, name);
+//                if (affectedRows > 0) {
+////                member.setName(name);
+//                    logger.info("CHANGE!");
+//                    memberService.save(member);
+//                    member = memberService.findByUsername(username);
+//                }
+            } else {
+                logger.info(m2.toString());
+            }
+        }
+
+        logger.info(member.toString());
         return member;
     }
 

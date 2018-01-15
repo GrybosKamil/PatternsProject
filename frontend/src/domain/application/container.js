@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as ApplicationActions from './actions'
-import {Application} from "./index"
+import {Header, MemberInterface} from "./index"
 import {createSelector, createStructuredSelector} from 'reselect'
 import {isLogged, pushHistory} from "../../utils/utils";
 
@@ -12,8 +12,7 @@ class ApplicationContainer extends React.Component {
 
     static propTypes = {
         application: PropTypes.object.isRequired,
-        login: PropTypes.object.isRequired,
-        getEmployees: PropTypes.func.isRequired
+        login: PropTypes.object.isRequired
     };
 
     doLogin() {
@@ -24,29 +23,53 @@ class ApplicationContainer extends React.Component {
         this.props.doLogout();
     }
 
+    pressEnter(event) {
+        if (event.charCode === 13) {
+            this.doChangeName();
+        }
+    }
+
+    changeName(event) {
+        this.props.changeName(event.target.value);
+    }
+
+    doChangeName() {
+        this.props.doChangeName(this.props.login.username,
+            this.props.application.name, this.props.application.drawName);
+    }
+
     componentDidMount() {
         if (isLogged() &&
             this.props.isAuthenticated()
                 .then(() => true)
                 .catch(() => false)
         ) {
-            console.log("logged, get employees!");
-            this.props.getEmployees();
             this.props.getMember(this.props.login.username);
         } else {
-            console.log("not logged, redirect!");
             pushHistory("/login");
         }
     }
 
     render() {
         return (
-            <Application
-                logged={isLogged()}
-                employees={this.props.application.employees}
-                doLogin={this.doLogin.bind(this)}
-                doLogout={this.doLogout.bind(this)}
-            />
+            <div>
+
+                <Header
+                    logged={isLogged()}
+                    doLogin={this.doLogin.bind(this)}
+                    doLogout={this.doLogout.bind(this)}
+                />
+                <MemberInterface
+                    error={this.props.application.error}
+                    success={this.props.application.success}
+                    originalName={this.props.application.name}
+                    drawName={this.props.application.drawName}
+                    pressEnter={this.pressEnter.bind(this)}
+                    changeName={this.changeName.bind(this)}
+                    doChangeName={this.doChangeName.bind(this)}
+                />
+
+            </div>
         )
     }
 }

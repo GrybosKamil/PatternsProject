@@ -1,4 +1,4 @@
-package com.grybos.kamil.patternsproject.model.factory;
+package com.grybos.kamil.patternsproject.factory;
 
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.user.Organizer;

@@ -1,6 +1,6 @@
 package com.grybos.kamil.patternsproject.service;
 
-import com.grybos.kamil.patternsproject.model.factory.UserFactory;
+import com.grybos.kamil.patternsproject.factory.UserFactory;
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.user.Member;
 import com.grybos.kamil.patternsproject.model.user.User;
@@ -39,32 +39,27 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public void create(String username, String password, String role) {
-        logger.info("create");
         String salt = stringSupport.generate();
         User u = userFactory.create(username, shaPasswordEncoder.encodePassword(password, salt), salt, role);
         userRepository.save(u);
     }
 
     public void createMember(String username, String password, String role) {
-        logger.info("createMember");
         create(username, password, role);
         memberService.create(username, username);
     }
 
     public void createMember(String username, String password, String role, Wallet wallet) {
-        logger.info("createMember");
         create(username, password, role);
         memberService.create(username, username, wallet);
     }
 
     public void createOrganizer(String username, String password, String role) {
-        logger.info("createOrganizer");
         create(username, password, role);
         organizerService.create(username, username);
     }
 
     public void createOrganizer(String username, String password, String role, Wallet wallet) {
-        logger.info("createOrganizer");
         create(username, password, role);
         organizerService.create(username, username, wallet);
     }

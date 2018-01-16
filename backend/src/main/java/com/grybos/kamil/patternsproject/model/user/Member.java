@@ -1,7 +1,10 @@
 package com.grybos.kamil.patternsproject.model.user;
 
+import com.grybos.kamil.patternsproject.model.challenge.Challenge;
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,6 +29,17 @@ public class Member {
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
     private Wallet wallet;
+//    @LazyCollection(LazyCollectionOption.TRUE)
+//    @ManyToMany
+//    private List<Challenge> challenges;
+
+//    public List<Challenge> getChallenges() {
+//        return challenges;
+//    }
+//
+//    public void setChallenges(List<Challenge> challenges) {
+//        this.challenges = challenges;
+//    }
 
     public Integer getId() {
         return id;
@@ -45,15 +61,15 @@ public class Member {
         this.name = name;
     }
 
-    public Member() {
-    }
-
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
     }
 
     public Wallet getWallet() {
         return wallet;
+    }
+
+    public Member() {
     }
 
     public Member(String username, String name) {
@@ -75,8 +91,10 @@ public class Member {
                         "username='%s', " +
                         "name='%s', " +
                         "wallet=[%s]" +
+//                        "challenges=[%d]" +
                         "]",
                 getId(), getUsername(), getName(), getWallet()
+//                , getChallenges().size()
         );
     }
 

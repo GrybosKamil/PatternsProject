@@ -1,5 +1,6 @@
 package com.grybos.kamil.patternsproject.model.money;
 
+import org.jboss.logging.Logger;
 import org.junit.Assert;
 
 import javax.persistence.Embeddable;
@@ -14,6 +15,7 @@ public class Money {
     private final Currency currency;
 
     private static final int[] cents = new int[]{1, 10, 100, 1000};
+    private Logger logger = Logger.getLogger(Money.class);
 
     private int centFactor() {
         return cents[getCurrency().getDefaultFractionDigits()];
@@ -117,8 +119,15 @@ public class Money {
     public Money[] allocate(int n) {
         Money lowResult = newMoney(getAmount() / n);
         Money highResult = newMoney(lowResult.getAmount() + 1);
+
+        logger.info(getAmount());
+        logger.info("TUTAJ????");
+        logger.info(highResult);
+        logger.info(lowResult);
         Money[] results = new Money[n];
         int remainder = (int) getAmount() % n;
+        logger.info("TUTAJ");
+        logger.info(remainder);
         for (int i = 0; i < remainder; i++) {
             results[i] = highResult;
         }
@@ -129,6 +138,20 @@ public class Money {
     }
 
     public Money[] allocate(long[] ratios) {
+        logger.info("ratios");
+        logger.info(ratios);
+        if (ratios.length == 0 || ratios.length == 1) {
+            return new Money[]{this};
+        }
+
+        if (getAmount() == 0) {
+            Money[] monies = new Money[ratios.length];
+            for (int i = 0; i < monies.length; i++) {
+                monies[i] = newMoney(0);
+            }
+            return monies;
+        }
+
         long total = 0;
         for (long ratio : ratios) {
             total += ratio;

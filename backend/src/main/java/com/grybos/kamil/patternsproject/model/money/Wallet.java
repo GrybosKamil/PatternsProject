@@ -1,6 +1,8 @@
 package com.grybos.kamil.patternsproject.model.money;
 
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     //    @OneToMany(cascade = CascadeType.ALL) //ADDED
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ElementCollection
     private List<Money> monies;
 

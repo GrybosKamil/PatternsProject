@@ -1,7 +1,7 @@
 package com.grybos.kamil.patternsproject.service;
 
-import com.grybos.kamil.patternsproject.model.factory.MemberFactory;
-import com.grybos.kamil.patternsproject.model.factory.WalletFactory;
+import com.grybos.kamil.patternsproject.factory.MemberFactory;
+import com.grybos.kamil.patternsproject.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.user.Member;
 import com.grybos.kamil.patternsproject.repository.MemberRepository;
@@ -26,13 +26,11 @@ public class MemberService {
     private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
     public void create(String username, String name) {
-        logger.info("create");
         Member m = memberFactory.create(username, name, walletFactory.create());
         memberRepository.save(m);
     }
 
     public void create(String username, String name, Wallet wallet) {
-        logger.info("create");
         Member m = memberFactory.create(username, name, wallet);
         memberRepository.save(m);
     }

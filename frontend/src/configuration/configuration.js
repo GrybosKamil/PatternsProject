@@ -15,6 +15,7 @@ const registration = "/registration";
 
 const member = "/member";
 const organizer = "/organizer";
+const challenge = "/challenge";
 
 module.exports = {
     protocol: protocol,
@@ -23,12 +24,15 @@ module.exports = {
     serverPath: serverPath,
     apiPath: apiPath,
     endPoints: {
-        employees: apiPath + employees,
-        customers: apiPath + customers,
-        member: apiPath + member,
         authentication: apiPath + authentication,
         registrationMember: apiPath + registration + member,
         registrationOrganizer: apiPath + registration + organizer,
+
+        employees: apiPath + employees,
+        customers: apiPath + customers,
+        member: apiPath + member,
+
+        challenge: apiPath + challenge,
     },
     token: token,
     userName: userName

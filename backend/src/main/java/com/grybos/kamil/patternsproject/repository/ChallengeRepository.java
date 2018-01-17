@@ -1,6 +1,7 @@
 package com.grybos.kamil.patternsproject.repository;
 
 import com.grybos.kamil.patternsproject.model.challenge.Challenge;
+import com.grybos.kamil.patternsproject.model.challenge.ChallengeCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
@@ -17,12 +18,15 @@ public interface ChallengeRepository extends JpaRepository<Challenge, Long> {
     @Transactional
     List<Challenge> findByOwner(String username);
 
-    //    @Transactional
-    //    List<Challenge> findByCategory(String category);
+    @Transactional
+    List<Challenge> findByCategory(ChallengeCategory category);
 
     @Modifying
     @Transactional
     Challenge save(Challenge challenge);
+
+    @Transactional
+    List<Challenge> findAll();
 
 //    @Modifying
 //    @Transactional

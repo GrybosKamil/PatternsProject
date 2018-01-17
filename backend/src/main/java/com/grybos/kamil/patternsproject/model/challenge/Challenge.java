@@ -7,6 +7,7 @@ import lombok.Data;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,22 +30,20 @@ public class Challenge {
     @ManyToOne
     private Organizer owner;
 
+    //    @Column(name = "name", insertable = false, updatable = false)
+    @Column(name = "challenge_name")
     private String name;
 
     private String description;
 
-//    @ManyToOne
-//    private ChallengeCategory category;
+    private ChallengeCategory category;
 
-    //    @LazyCollection(LazyCollectionOption.FALSE)
     @LazyCollection(LazyCollectionOption.FALSE)
     @ElementCollection
     private List<Money> rewards;
 
     private Integer memberLimit;
 
-    //    @LazyCollection(LazyCollectionOption.TRUE)
-//    @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     @ElementCollection
     private List<Member> participants;
@@ -78,13 +77,13 @@ public class Challenge {
         this.description = description;
     }
 
-//    public ChallengeCategory getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(ChallengeCategory category) {
-//        this.category = category;
-//    }
+    public ChallengeCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ChallengeCategory category) {
+        this.category = category;
+    }
 
     public List<Money> getRewards() {
         return rewards;
@@ -115,11 +114,11 @@ public class Challenge {
     }
 
     public Challenge(Organizer owner,
-//                     ChallengeCategory category,
+                     ChallengeCategory category,
                      String name, String description,
                      List<Money> rewards, Integer memberLimit) {
         this.owner = owner;
-//        this.category = category;
+        this.category = category;
         this.name = name;
         this.description = description;
         this.rewards = rewards;
@@ -147,7 +146,7 @@ public class Challenge {
                 "Challenge[" +
                         "id=%d, " +
                         "owner=[%s], " +
-//                        "category=[%s], " +
+                        "category=[%s], " +
                         "name='%s', " +
                         "description='%s', " +
                         "reward=[%s], " +
@@ -155,7 +154,7 @@ public class Challenge {
                         "participants=[%d]" +
                         "]",
                 getId(), getOwner(),
-//                getCategory(),
+                getCategory(),
                 getName(), getDescription(),
                 reward, getMemberLimit(), getParticipants().size());
     }

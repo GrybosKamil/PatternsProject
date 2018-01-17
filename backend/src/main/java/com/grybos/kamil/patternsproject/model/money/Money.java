@@ -14,7 +14,7 @@ public class Money {
     private final long amount;
     private final Currency currency;
 
-    private static final int[] cents = new int[]{1, 10, 100, 1000};
+    private static final int[] cents = new int[]{1, 10, 100, 1000, 10000, 100000, 1000000, 10000000};
     private Logger logger = Logger.getLogger(Money.class);
 
     private int centFactor() {
@@ -39,6 +39,15 @@ public class Money {
     public Money(long amount, Currency currency) {
         this.currency = currency;
         this.amount = amount * centFactor();
+    }
+
+    public Money(long amount, Currency currency, boolean useCentFactor) {
+        this.currency = currency;
+        if (useCentFactor) {
+            this.amount = amount * centFactor();
+        } else {
+            this.amount = amount;
+        }
     }
 
     public long getAmount() {
@@ -75,6 +84,12 @@ public class Money {
 
     public Money add(Money other) {
         assertSameCurrencyAs(other);
+//        long amount1 = getAmount();
+//        long amount2 = other.getAmount();
+//
+//        long amount3 = amount1 + amount2;
+//        Money a = newMoney(amount3);
+//        long amount = getAmount() + other.getAmount();
         return newMoney(getAmount() + other.getAmount());
     }
 
@@ -84,7 +99,7 @@ public class Money {
     }
 
     private Money newMoney(long amount) {
-        return new Money(amount, this.getCurrency());
+        return new Money(amount, this.getCurrency(), false);
     }
 
     public int compareTo(Object other) {
@@ -106,7 +121,6 @@ public class Money {
         return (compareTo(other) < 0);
     }
 
-
     public Money multiply(double amount) {
         return multiply(new BigDecimal(amount));
     }
@@ -117,17 +131,12 @@ public class Money {
     }
 
     public Money[] allocate(int n) {
-        Money lowResult = newMoney(getAmount() / n);
-        Money highResult = newMoney(lowResult.getAmount() + 1);
+        long partAmount = getAmount() / n;
+        Money lowResult = newMoney(partAmount);
+        Money highResult = newMoney(partAmount + 1);
 
-        logger.info(getAmount());
-        logger.info("TUTAJ????");
-        logger.info(highResult);
-        logger.info(lowResult);
         Money[] results = new Money[n];
         int remainder = (int) getAmount() % n;
-        logger.info("TUTAJ");
-        logger.info(remainder);
         for (int i = 0; i < remainder; i++) {
             results[i] = highResult;
         }
@@ -138,8 +147,6 @@ public class Money {
     }
 
     public Money[] allocate(long[] ratios) {
-        logger.info("ratios");
-        logger.info(ratios);
         if (ratios.length == 0 || ratios.length == 1) {
             return new Money[]{this};
         }

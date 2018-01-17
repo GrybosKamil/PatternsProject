@@ -13,7 +13,7 @@ function Header({logged, doLogin, doLogout}) {
                     {logged ?
                         <ul className="nav navbar-nav">
                             <li onClick={doLogout}><a href={"/login"}>Logout</a></li>
-                            <li><a>All challenges</a></li>
+                            <li><a href={"/challenges"}>All challenges</a></li>
                             <li><a>My challenges</a></li>
                             <li><a>Statistics</a></li>
                         </ul>

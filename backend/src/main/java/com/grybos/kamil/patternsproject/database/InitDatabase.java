@@ -48,7 +48,7 @@ public class InitDatabase {
         Organizer q = (Organizer) memberService.findByName("q");
         logger.info(q.toString());
 
-//        ChallengeCategory category = new ChallengeCategory("Running");
+        ChallengeCategory category = new ChallengeCategory("Running");
 
         String name = "Sprint 5 km";
         String description = "Run 5 km in 20 minutes";
@@ -60,7 +60,7 @@ public class InitDatabase {
 //        Money money = allMoney.allocate(ratios)[0];
         int memberLimit = 7;
         challengeService.create(q,
-//                category,
+                category,
                 name, description, allMoney, memberLimit);
 
 

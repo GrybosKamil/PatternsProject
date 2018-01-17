@@ -3,6 +3,7 @@ package com.grybos.kamil.patternsproject.service;
 import com.grybos.kamil.patternsproject.factory.ChallengeFactory;
 import com.grybos.kamil.patternsproject.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.model.challenge.Challenge;
+import com.grybos.kamil.patternsproject.model.challenge.ChallengeCategory;
 import com.grybos.kamil.patternsproject.model.money.Money;
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.user.Member;
@@ -26,13 +27,13 @@ public class ChallengeService {
 
     private static final Logger logger = LoggerFactory.getLogger(ChallengeService.class);
 
-    public void create(Organizer organizer, String name, String description, Money money, long ratios[]) {
-        Challenge c = challengeFactory.create(organizer, name, description, money, ratios);
+    public void create(Organizer organizer, ChallengeCategory category, String name, String description, Money money, long ratios[]) {
+        Challenge c = challengeFactory.create(organizer, category, name, description, money, ratios);
         challengeRepository.save(c);
     }
 
-    public void create(Organizer organizer, String name, String description, Money money, int memberLimit) {
-        Challenge c = challengeFactory.create(organizer, name, description, money, memberLimit);
+    public void create(Organizer organizer, ChallengeCategory category, String name, String description, Money money, int memberLimit) {
+        Challenge c = challengeFactory.create(organizer, category, name, description, money, memberLimit);
         challengeRepository.save(c);
     }
 
@@ -55,6 +56,10 @@ public class ChallengeService {
 
     public Challenge save(Challenge challenge) {
         return challengeRepository.save(challenge);
+    }
+
+    public List<Challenge> findAll() {
+        return challengeRepository.findAll();
     }
 
 //    public int updateName(String username, String name) {

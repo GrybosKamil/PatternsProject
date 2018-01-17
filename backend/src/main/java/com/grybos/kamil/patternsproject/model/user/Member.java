@@ -1,10 +1,7 @@
 package com.grybos.kamil.patternsproject.model.user;
 
-import com.grybos.kamil.patternsproject.model.challenge.Challenge;
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import lombok.Data;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import java.util.List;
 
 @Data
 @Entity
@@ -33,7 +28,7 @@ public class Member {
 //    @ManyToMany
 //    private List<Challenge> challenges;
 
-//    public List<Challenge> getChallenges() {
+    //    public List<Challenge> getChallenges() {
 //        return challenges;
 //    }
 //

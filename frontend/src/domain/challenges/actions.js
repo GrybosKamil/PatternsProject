@@ -12,7 +12,7 @@ export function getChallenges() {
                 console.log(data);
                 dispatch({
                     type: challengesActionTypes.GET_CHALLENGES,
-                    payload: data
+                    payload: data.challenges
                 });
                 return data
             })

@@ -32,6 +32,10 @@ public class OrganizerService {
         organizerRepository.save(m);
     }
 
+    public Organizer save(Organizer organizer) {
+        return organizerRepository.save(organizer);
+    }
+
     public Organizer findByUsername(String username) {
         return organizerRepository.findByUsername(username);
     }

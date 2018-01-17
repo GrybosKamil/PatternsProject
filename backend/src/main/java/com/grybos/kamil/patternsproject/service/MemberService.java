@@ -4,6 +4,7 @@ import com.grybos.kamil.patternsproject.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.factory.WalletFactory;
 import com.grybos.kamil.patternsproject.model.money.Wallet;
 import com.grybos.kamil.patternsproject.model.user.Member;
+import com.grybos.kamil.patternsproject.model.user.MemberNotFound;
 import com.grybos.kamil.patternsproject.repository.MemberRepository;
 import com.grybos.kamil.patternsproject.repository.UserRepository;
 import org.slf4j.Logger;
@@ -35,21 +36,32 @@ public class MemberService {
         memberRepository.save(m);
     }
 
-    public Member createNotFoundUser() {
+    public MemberNotFound createNotFoundUser() {
         return memberFactory.createNotFoundUser();
     }
 
-    public Member createNotFoundMember(String username) {
-        return memberFactory.createNotFoundMember(username);
+    public MemberNotFound createNotFoundMemberByUsername(String username) {
+        return memberFactory.createNotFoundMemberByUsername(username);
     }
 
+    public MemberNotFound createNotFoundMemberByName(String name) {
+        return memberFactory.createNotFoundMemberByName(name);
+    }
 
     public Member findByUsername(String username) {
-        return memberRepository.findByUsername(username);
+        Member member = memberRepository.findByUsername(username);
+        if (member == null) {
+            member = memberFactory.createNotFoundMemberByUsername(username);
+        }
+        return member;
     }
 
     public Member findByName(String name) {
-        return memberRepository.findByName(name);
+        Member member = memberRepository.findByName(name);
+        if (member == null) {
+            member = memberFactory.createNotFoundMemberByName(name);
+        }
+        return member;
     }
 
     public Member save(Member member) {

@@ -2,7 +2,10 @@ package com.grybos.kamil.patternsproject.controller;
 
 import com.grybos.kamil.patternsproject.factory.MemberFactory;
 import com.grybos.kamil.patternsproject.model.user.Member;
+import com.grybos.kamil.patternsproject.model.user.MemberNotFound;
 import com.grybos.kamil.patternsproject.model.user.User;
+import com.grybos.kamil.patternsproject.model.user.converter.MemberConverter;
+import com.grybos.kamil.patternsproject.model.user.dto.MemberDTO;
 import com.grybos.kamil.patternsproject.service.MemberService;
 import com.grybos.kamil.patternsproject.service.UserService;
 import org.slf4j.Logger;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/member")
@@ -38,31 +43,27 @@ public class MemberController {
 ////            member = organizerService.findByUsername(username);
 ////        }
 //        if (member == null) {
-//            member = memberFactory.createNotFoundMember(username);
+//            member = memberFactory.createNotFoundMemberByUsername(username);
 //        }
 //
 //        return member;
 //    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/get")
-    Member getMember(Authentication authentication) {
+    MemberDTO getMember(Authentication authentication) {
         String username = (String) authentication.getPrincipal();
         Member member = memberService.findByUsername(username);
 
-        if (member == null) {
-            member = memberFactory.createNotFoundMember(username);
-        }
-
-        return member;
+        MemberDTO memberDTO = MemberConverter.toMemberDTO(member);
+        return memberDTO;
     }
-
 
 //    @RequestMapping(method = RequestMethod.GET, value = "/changename")
 //    Member changeName(@RequestParam(value = "username") String username, @RequestParam(value = "name") String name) {
 //        logger.info(name);
 //        Member member = memberService.findByUsername(username);
 //        if (member == null) {
-//            member = memberFactory.createNotFoundMember(username);
+//            member = memberFactory.createNotFoundMemberByUsername(username);
 //        } else {
 //            Member m2 = memberService.findByName(name);
 //            if (m2 == null) {
@@ -87,31 +88,18 @@ public class MemberController {
 //    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/changename")
-    Member changeName(Authentication authentication, @RequestParam(value = "name") String name) {
+    MemberDTO changeName(Authentication authentication, @RequestParam(value = "name") String name) {
         String username = (String) authentication.getPrincipal();
         Member member = memberService.findByUsername(username);
-        if (member == null) {
-            member = memberFactory.createNotFoundMember(username);
-        } else {
+        if (Objects.equals(member.getUsername(), username)) {
             Member m2 = memberService.findByName(name);
-            if (m2 == null) {
+            if (!(m2 instanceof MemberNotFound)) {
                 member.setName(name);
-                Member m3 = memberService.save(member);
-                logger.info(m3.toString());
-//                int affectedRows = memberService.updateName(username, name);
-//                if (affectedRows > 0) {
-////                member.setName(name);
-//                    logger.info("CHANGE!");
-//                    memberService.save(member);
-//                    member = memberService.findByUsername(username);
-//                }
-            } else {
-                logger.info(m2.toString());
+                memberService.save(member);
             }
         }
 
-        logger.info(member.toString());
-        return member;
+        return MemberConverter.toMemberDTO(member);
     }
 
 

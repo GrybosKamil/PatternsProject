@@ -73,7 +73,7 @@ public class UserService {
             if (user != null && token.equals(user.getToken()) && jwtService.isValid(token, secret)) {
                 member = memberService.findByUsername(username);
                 if (member == null) {
-                    member = memberService.createNotFoundMember(username);
+                    member = memberService.createNotFoundMemberByUsername(username);
                 }
                 return member;
             }
